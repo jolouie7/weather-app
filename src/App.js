@@ -23,6 +23,7 @@ function App() {
   );
   const [temp, setTemp] = useState(null)
   const [loading, setLoading] = useState(false);
+  const [fahrenheit, setFahrenheit] = useState(true)
 
 
   useEffect(() => {
@@ -123,6 +124,10 @@ function App() {
     }
   }
 
+  const handleButtonClick = () => {
+    setFahrenheit(!fahrenheit);
+  }
+
   const handleChange = (e) => {
     setLocation(e.target.value)
   }
@@ -156,9 +161,19 @@ function App() {
               city={city}
               defaultTemp={defaultTemp}
               desc={desc}
+              fahrenheit={fahrenheit}
             />
+            <Container className="my-3 text-center">
+              <Button className="py-2 px-5" variant="primary" onClick={handleButtonClick}>
+                {!fahrenheit ? "Fahrenheit" : "Celsius"}
+              </Button>
+            </Container>
             <Container fluid>
-              <img style={{maxWidth:"100%"}} src={image} alt="weather" />
+              <img
+                style={{ maxWidth: "100%", width: "100%" }}
+                src={image}
+                alt="weather"
+              />
             </Container>
           </div>
         ) : (
